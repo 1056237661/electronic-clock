@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			ul li{
+				float: left;
+				width: 30px;
+				height: 35px;
+				list-style: none;
+				background: url(img/star.jpg) 0 -70px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>			
+		</div>
+	</body>
+	<script type="text/javascript">
+		var ali = document.getElementsByTagName("li");
+		for (var i = 0; i<ali.length; i++) {
+			ali[i].index = i - 5;
+			ali[i].onmouseover = function(){
+				light(this.index);
+			}
+			ali[i].onmouseout = function(){						
+				for (var k=0;k<ali.length;k++) {
+					ali[k].style.backgroundPosition = "0 -70px";
+				}
+			}
+		}
+		
+		function light(index){			
+			if(index >= 0){					
+				for (var j=5;j<=index+5;j++) {
+					ali[j].style.backgroundPosition = "0 0";
+				}
+			}else{				
+				for (var j=4;j>=index+5;j--) {
+					ali[j].style.backgroundPosition = "0 0";
+				}					
+			}
+		}
+	</script>
+</html>

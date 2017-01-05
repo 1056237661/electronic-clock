@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+
+<style>
+    * { padding: 0; margin: 0; }
+    li { list-style: none; }
+    #parent { width: 600px; margin: 0 auto; }
+    h4 { line-height: 40px; margin-bottom: 10px; border-bottom: 1px solid #333; }
+    p { width: 100%; margin-bottom: 25px; line-height:24px;}
+    #box { width: 580px; padding: 25px 10px 0; border: 1px solid #ddd; margin-bottom: 10px;height:200PX;overflow-y:auto; word-break: break-all;}
+    em { position: relative; top: -13px; }
+    #text { width: 100%; height: 90px; overflow: auto; }
+    #btn { width: 100%; height: 50px; }
+</style>
+
+</head>
+	<body>
+	<div id="parent">
+	    <h4>留言内容：</h4>   	
+	    <div id="box">
+	  		
+	    </div>
+	    <textarea id="text"></textarea><br />
+	    <input id="btn" type="button" value="发表留言" />
+	</div>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		document.getElementById("btn").onclick = function(){
+			var text = document.getElementById("text").value;
+			document.getElementById("box").innerHTML += text + "<br />";
+			$('#box').animate({scrollTop: 10000}, 50);
+		}
+	</script>
+</html>

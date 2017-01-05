@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/checkbox-select-show.css"/>
+	</head>
+	<body>
+		<form>
+			<label for="show" class="forShow">已选择:</label><textarea disabled="disabled" name="show" id="show" class="show"></textarea><br /><br />
+			<label>选项：</label>
+			<input type="checkbox" checked="checked" name="" id="" value="苹果"/><label for="">苹果</label>
+			<input type="checkbox" name="" id="" value="香蕉"/><label for="">香蕉</label>
+			<input type="checkbox" name="" id="" value="橘子"/><label for="">橘子</label>
+			<input type="checkbox" name="" id="" value="葡萄"/><label for="">葡萄</label>
+		</form>
+	</body>
+	<script type="text/javascript">
+		var show = document.getElementById("show");
+		var aInput = document.getElementsByTagName("input");
+		var showArr = [];
+		/* 初始化选择信息 */
+		for(var i=0; i<aInput.length; i++){
+			
+			if (aInput[i].checked) {		
+				showArr.push(aInput[i].value);
+				show.innerHTML = showArr.join();
+			}
+			
+			aInput[i].onclick = function(){
+				
+				var val = this.value;
+				if (this.checked) {					
+					showArr.push(this.value);
+				} else{
+					for(var i=0; i<showArr.length; i++){
+						if (this.value == showArr[i]) {
+							showArr.splice(i,1);							
+						}
+					}				
+				}
+				show.innerHTML = showArr.join();
+			};
+		}
+	</script>
+</html>

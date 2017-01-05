@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/carousel.css"/>
+	</head>
+	<body>
+		<div id="big-box">				
+			<img src="img/carou1.png"/>
+			<img src="img/carou2.png"/>
+			<img src="img/carou3.png"/>
+			
+			<span class="left">&larr;</span>
+			<span class="right">&rarr;</span>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var imgBox = document.getElementById("big-box");         /*包含框*/
+		var imgList = document.getElementsByTagName("img");      /*img列表*/  
+		var left = document.getElementsByClassName("left")[0];   /*left按钮*/
+		var right = document.getElementsByClassName("right")[0]; /*right按钮*/
+		var isNow = 0;  /*存储当前显示图片基数*/
+		
+		//初始化index
+		for (var i=0;i<imgList.length;i++) {
+			imgList[i].index = i;			
+		}
+				
+		//定时器		
+		var timer = "";
+		setTime();
+		function setTime(){
+			timer = setInterval(function(){
+				if (isNow == imgList.length-1) {
+					isNow = 0;
+				} else{			
+					isNow++;
+				}
+				change(isNow);
+			},1500);			
+		}		
+		//清除定时器
+		function clear(obj){
+			clearInterval(obj);			
+		}		
+		
+		// 悬浮 left and right 导航按钮显示
+		imgBox.onmouseover = function(){
+			clear(timer);
+			left.style.display = "block";
+			right.style.display = "block";
+		}
+		imgBox.onmouseout = function(){
+			setTime();
+			left.style.display = "none";
+			right.style.display = "none";
+		}		
+		
+		//点击左右切换
+		left.onclick = function(){			
+			clear(timer);			
+			if (isNow == 0) {
+				isNow = imgList.length-1;
+			} else{			
+				isNow--;
+			}
+			change(isNow);
+		}
+		right.onclick = function(){			
+			clear(timer);			
+			if (isNow == imgList.length-1) {
+				isNow = 0;
+			} else{			
+				isNow++;
+			}
+			change(isNow);
+		}
+		
+		//图片切换函数
+		function change(isNow){
+			for (var i=0;i<imgList.length;i++) {
+				imgList[i].style.display = "none";
+			}
+			imgList[isNow].style.display = "block";
+		}  		
+	</script>
+</html>

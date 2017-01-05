@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box{width: 500px;height: 500px;border: 8px solid black;margin: 0 auto;	position: relative;	}
+			#smallbox{width: 100px;height: 100px;background-color: red;position: absolute;}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div id="smallbox"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var smallBox = document.getElementById("smallbox");	 /* 获取外框 */
+		var i = 0,n = 0;			
+		var arr = ["left", "top", "right", "bottom"];
+		slide("left");
+		function slide( direction){	
+			i = 0;
+			if (n == 2) {
+				smallBox.style.right = 0;	
+				smallBox.style.left = null;				
+			}
+			if (n == 3) {
+				smallBox.style.bottom = 0;				
+				smallBox.style.top = null;				
+			}
+			var timer = setInterval(function(){			
+				i = i+5;
+				smallBox.style[direction] = i+"px";
+				if(i==400){
+					n = (++n)%4;
+					clearInterval(timer);
+					slide(arr[n]);	
+				}
+			},20);	
+		};
+	</script>
+</html>

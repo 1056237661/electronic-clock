@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			ul{
+				margin: 20px;				
+			}
+			ul li{
+				width: 100%;
+				padding: 6px;
+				list-style: disc;
+			}
+		</style>
+	</head>
+	<body>
+		<ul id="ul">
+		</ul>
+	</body>
+	<script type="text/javascript">
+		var list = document.getElementById("ul");
+		for (var i = 0;i<9;i++) {	
+			if (i%3==0) {
+				list.innerHTML += '<li style="background: red;" type="red"></li>';
+			}else if(i%3==1){
+				list.innerHTML += '<li style="background: yellow;" type="yellow"></li>';
+			}else{				
+				list.innerHTML += '<li style="background: blue;" type="blue"></li>';
+			}
+		}
+		
+		var list = document.getElementsByTagName("li");		
+		for (var i = 0;i<9;i++) {
+			list[i].onmouseover = function(){
+				this.style.background = "green";	
+			}
+			list[i].onmouseout = function(){
+				this.style.background = this.type;
+			}
+		}
+	</script>
+</html>

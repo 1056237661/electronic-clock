@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title></title>
+    </head>
+    <body>
+        <input type="checkbox" name="" id="" value="" checked="checked" />
+        <input type="checkbox" name="" id="" value=""/>
+        <input type="checkbox" name="" id="" value="" />
+        <input type="checkbox" name="" id="" value="" />
+        <input type="checkbox" checked="true" name="" id="" value="" />
+        <input type="checkbox" name="" id="" value="" />
+        <input type="checkbox" name="" id="" value="" />
+        <button class="button" id="button">全选</button>
+    </body>
+    <script type="text/javascript">
+        var buttons = document.getElementById("button");
+        var checkboxs = document.getElementsByTagName("input");
+        
+        
+        for(var i=0; i<checkboxs.length; i++){
+        	checkboxs[i].onclick = function(){
+        		console.log(this);
+        		if (this.checked == true) {
+        			this.setAttribute("checked","checked");
+	        		console.log(this.checked);
+        		}else{
+        			this.removeAttribute("checked");
+	        		console.log(this.checked);
+        		}
+        	}
+        }
+        
+        buttons.onclick = function(){ 
+        	/* 判断已选中的个数 */
+            var num = 0;
+            for (k in checkboxs) {  
+                if(checkboxs[k].checked){
+                    num++;
+                }
+            }            
+            /* 根据个数改动全选 */
+            if (num == checkboxs.length) {    
+                for (var i = 0;i<checkboxs.length;i++) { 
+//                  checkboxs[i].checked = false;
+        			checkboxs[i].removeAttribute("checked");
+                }                
+            }else{                
+                for (var i = 0;i<checkboxs.length;i++) { 
+//                  checkboxs[i].checked = true;                    
+        			checkboxs[i].setAttribute("checked","checked");
+                }    
+            }
+        }
+    </script>
+</html>

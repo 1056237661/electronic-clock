@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#inputBox, #outputBox{
+				width: 250px;
+				height: 280px;
+			}
+			.button{
+				vertical-align: top;
+			}
+			.middlebox{
+				display: inline-block;
+				vertical-align: top;
+				text-align: center;
+			}			
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<textarea id="inputBox"></textarea>
+			<div class="middlebox" >
+				<button class="button">开始</button><br />
+				<span id="have">0</span>/<span id="all">0</span><br />
+				<button class="clear">清除</button><br />
+			</div>			
+			<textarea id="outputBox" disabled="disabled"></textarea>			
+		</div>
+		<script type="text/javascript">
+			var inputBox = document.getElementById("inputBox");
+			var outputBox = document.getElementById("outputBox");
+			var buton = document.getElementsByTagName("button");
+			var have = document.getElementById("have");
+			var all = document.getElementById("all");
+			var words = [];
+			var i = 0;			
+			buton[0].onclick = function(){
+				var str = inputBox.value;
+				all.innerHTML = str.length;
+				words = str.split("");				
+				var timer = setInterval(function(){
+					outputBox.innerHTML += words[i];
+					i++;	
+					have.innerHTML = i;
+					if (i==str.length) {
+						clearInterval(timer);
+						i=0;
+					}
+				},50);
+			}
+			buton[1].onclick = function(){
+				outputBox.innerHTML = "";
+			}			
+		</script>
+	</body>
+</html>
